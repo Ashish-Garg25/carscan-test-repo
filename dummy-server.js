@@ -8,9 +8,9 @@ const server = http.createServer((req, res) => {
       try {
         const data = JSON.parse(body);
         const screenshots = data.screenshots || [];
-        console.log(`\n📦 Batch received`);
-        console.log(`👤 Mobile: ${data.mobileNumber}`);
-        console.log(`📸 Screenshots: ${screenshots.length}`);
+        console.log(`\nBatch received`);
+        console.log(`Mobile: ${data.mobileNumber}`);
+        console.log(`Screenshots: ${screenshots.length}`);
         screenshots.forEach((s, i) => {
           const sizeKB = ((s.image.length * 3) / 4 / 1024).toFixed(1);
           console.log(`  [${i + 1}] ${s.filename} | ${sizeKB} KB | ${s.timestamp}`);
@@ -28,7 +28,7 @@ const server = http.createServer((req, res) => {
           })),
         }));
       } catch (e) {
-        console.error('❌ Parse error:', e);
+        console.error('Parse error:', e);
         res.writeHead(400);
         res.end(JSON.stringify({ error: 'Invalid JSON' }));
       }
@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(3000, () => {
-  console.log('🚀 Dummy server running on http://localhost:3000');
-  console.log('👉 Run: ngrok http 3000');
-  console.log('👉 Then set API_BASE_URL to the ngrok URL in your .env');
+  console.log('Dummy server running on http://localhost:3000');
+  console.log('Run: ngrok http 3000');
+  console.log('Then set API_BASE_URL to the ngrok URL in your .env');
 });
